@@ -39,9 +39,12 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN adduser --home=/opt/libreoffice --disabled-password --gecos "" --shell=/bin/bash libreoffice
-
 RUN update-ca-certificates
-VOLUME ["/app"]
+COPY app /app
 WORKDIR "/app"
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN /usr/bin/composer install
+
+VOLUME ["/app"]
 
 CMD [ "php", "./app.php" ]
