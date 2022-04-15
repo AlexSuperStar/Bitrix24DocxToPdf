@@ -1,0 +1,22 @@
+version: '3'
+services:
+  FileTransformer:
+    restart: unless-stopped
+    image: alexstar/filetransformer:latest 
+    container_name: FileTransformer
+    environment:
+     - DEBUG=1
+     - AMQP_DEBUG=0
+     - RABBITMQ_HOST=rabbit
+     - RABBITMQ_PORT=5672
+     - RABBITMQ_USER=guest
+     - RABBITMQ_PASS=guest
+     - QUEUE=documentgenerator_create
+    volumes:
+      - ./app:/app
+  rabbit:
+    image: 'rabbitmq:3.6-management-alpine'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    restart: unless-stopped   

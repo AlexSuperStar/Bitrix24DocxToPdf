@@ -21,7 +21,7 @@ version: '3'
 services:
   FileTransformer:
     restart: unless-stopped
-    image: alexstar:filetransformer 
+    image: alexstar/filetransformer: 
     container_name: FileTransformer
     environment:
      - DEBUG=1
