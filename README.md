@@ -41,4 +41,4 @@ services:
     restart: unless-stopped              
 ```
 ## License
-MIT
+Apache License 2.0
